@@ -1,6 +1,7 @@
 import { Link, graphql, useStaticQuery } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
+import { CallToActionButton } from "../CallToActionButton";
 
 export const Menu = () => {
   const data = useStaticQuery(graphql`
@@ -51,7 +52,7 @@ export const Menu = () => {
           alt="Logo"
         />
       </Link>
-      <div className="flex h-full">
+      <div className="flex h-full flex-1 justify-end">
         {/* メニュー */}
         {(menuItems || []).map((menuItem, index) => (
           <div
@@ -80,6 +81,15 @@ export const Menu = () => {
             )}
           </div>
         ))}
+      </div>
+      <div className="pl-4">
+        <CallToActionButton
+          label={data.wp.acfOptionsMainMenu.mainMenu.callToActionButton.label}
+          destination={
+            data.wp.acfOptionsMainMenu.mainMenu.callToActionButton.destination
+              .uri
+          }
+        />
       </div>
     </div>
   );
