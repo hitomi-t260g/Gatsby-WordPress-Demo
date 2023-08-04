@@ -6,6 +6,14 @@ module.exports = {
     "./src/templates/**/*.{js,jsx,ts,tsx}",
     "./src/config/**/*.{js,jsx,ts,tsx}",
   ],
-  theme: {},
+  theme: {
+    extend: {
+      colors: {
+        "british-racing-green":
+          "var(--wp--preset--color--british-racing-green)",
+        "bumblebee-yellow": "var(--wp--preset--color--bumblebee-yellow)",
+      },
+    },
+  },
   plugins: [],
 };
