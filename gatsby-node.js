@@ -32,7 +32,13 @@ exports.createPages = async ({ actions, graphql }) => {
     const page = data.allWpPage.nodes[i];
     let blocks = page.blocks;
     blocks = assignIds(blocks);
-    blocks = await assignGatsbyImage({ blocks, graphql, coreMediaText: true });
+    blocks = await assignGatsbyImage({
+      blocks,
+      graphql,
+      coreMediaText: true,
+      coreImage: true,
+      coreCover: true,
+    });
 
     createPage({
       path: page.uri,

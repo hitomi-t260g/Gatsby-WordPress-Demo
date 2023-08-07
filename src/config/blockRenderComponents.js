@@ -5,12 +5,38 @@ import {
   getStyles,
   getClasses,
 } from "@webdeveducation/wp-block-tools";
-import { CallToActionButton, MediaText } from "../components";
+import { CallToActionButton, Cover, MediaText } from "../components";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 export const blockRenderComponents = (block) => {
   switch (block.name) {
+    case "core/cover": {
+      console.log("COVER DATA:", block);
+      return (
+        <Cover
+          key={block.id}
+          style={getStyles(block)}
+          className={getClasses(block)}
+          gatsbyImage={block.attributes.gatsbyImage}
+        >
+          <BlockRenderer blocks={block.innerBlocks} />
+        </Cover>
+      );
+    }
+    case "core/image": {
+      return (
+        <figure key={block.id} className={getClasses(block)}>
+          <GatsbyImage
+            style={getStyles(block)}
+            image={block.attributes.gatsbyImage}
+            alt={block.attributes.alt || ""}
+            width={block.attributes.width}
+            height={block.attributes.height}
+          />
+        </figure>
+      );
+    }
     case "tgg/ctabutton": {
-      console.log("CTA BUTTON DATA:", block);
       const alignmap = {
         left: "text-left",
         center: "text-center",
